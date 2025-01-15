@@ -1,0 +1,31 @@
+environment.systemPackages = with pkgs; [
+
+#Essentials
+  firefox
+  gnome-shell-extension-ddterm
+  fish
+  neovim
+  alacritty
+  discord
+  spotify
+  notion-app-enhanced
+  obsidian
+  obs-studio
+  wine-wow-wayland
+
+#Programming Packages  
+  python3
+  mysql-workbench
+  nosql-workbench
+  mongodb
+  mariadb-server #Fallback incase of mongo fucking up
+  gcc
+  zulu-ca-jdk
+  pycharm-community
+  idea-community
+  vscode
+
+#Gaming
+#  steam
+#  lutris
+];
