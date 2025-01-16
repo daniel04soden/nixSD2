@@ -20,8 +20,8 @@
 
   # Networking
 
-  networking.hostName = "Daniel"; # Define your own hostname 
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = ""; # Define your own hostname 
+  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -95,16 +95,20 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.daniels = {
+  users.users.exampleName = {
     isNormalUser = true;
-    description = "Daniel Soden";
+    description = ""; # Set own name
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
+    packages = with pkgs; [ # user defined packages
     ];
   };
 
+  # Enabling flatpaks - If possible pls dont use them just ask me what to do instead
+
+  services.flatpak.enable = true;
+
   # Install firefox.
-  programs.firefox = {
+  programs.firefox = { # Limited options for firefox config
 
   enable = true;
 
@@ -113,29 +117,73 @@
 
   # Install Programming editors
 
-  programs.neovim = {
+  programs.neovim = { # Planning on Making neovim completely nix configured
   enable = true;
   };
 
 
   # Window Manager
 
-  programs.hyprland = {
+  programs.hyprland = { # Simple default hyprland, will include simple config
 	enable = true;
 
+  };
+
+  # Terminal Multiplexer
+
+  programs.tmux = {
+  	enable = true;
+	keyMode = "vi";
+
+
+  };
+
+  # Shell in use 
+  programs.fish = {
+  enable = true;
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    wget
-    fastfetch
-    git 
-  ];
 
+    # Administrator Things
+    wget # Not needed much, another curl alternative
+    fastfetch # Style!
+    git # Will need for project management
+    kitty # Main terminal Emulator, will provide config for it
+    tk # For eduroam install
+
+    # Gui apps
+    spotify # Music yipee
+    obsidian # Best note taking app - Notion can also be installed via snap or used within the browser
+    # google-chrome # For senan lol
+    
+    # General Compilers/Interpreters
+
+    python3 # Python always needed at some point lol
+    
+    # Object oriented Programming 
+
+    jdk # Standard up to date jdk - comment out for nosql
+    
+    # NoSQL Data Architecture
+    # jdk8 # uncomment for use in nosql
+    nodejs_22 # God forbid we need to do any more webdev
+    neo4j
+
+
+
+    # Hyprland config dependencies
+
+    grim
+    slurp
+    brightnessctl
+    waybar
+    hyprpaper
+  ];
+  # Nerd font used 
  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
 
   # Some programs need SUID wrappers, can be configured further or are
